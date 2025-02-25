@@ -10,13 +10,40 @@ export interface CustomRouteObject {
 
 export enum ROUTER_PATHS {
   HOME = "/",
+  LUNCH = "/lunch",
+  DINNER = "/dinner",
+  ADD_MEMBER = "/add_member",
 }
 
 export const routes: CustomRouteObject[] = [
   {
-    title: ROUTER_PATHS.HOME,
+    title: "Home",
     routeObject: {
-      path: "/",
+      path: ROUTER_PATHS.HOME,
+      element: <App />,
+      errorElement: <ErrorBoundaryPage />,
+    },
+  },
+  {
+    title: "Lunch",
+    routeObject: {
+      path: ROUTER_PATHS.LUNCH,
+      element: <App />,
+      errorElement: <ErrorBoundaryPage />,
+    },
+  },
+  {
+    title: "Dinner",
+    routeObject: {
+      path: ROUTER_PATHS.DINNER,
+      element: <App />,
+      errorElement: <ErrorBoundaryPage />,
+    },
+  },
+  {
+    title: "Adding of Members",
+    routeObject: {
+      path: ROUTER_PATHS.ADD_MEMBER,
       element: <App />,
       errorElement: <ErrorBoundaryPage />,
     },
