@@ -1,10 +1,6 @@
 import { routes } from "../router/router";
 
-interface AppProps {
-  title?: string;
-}
-
-export const Home = ({ title }: AppProps) => {
+export const Home = () => {
   return (
     <div>
       {routes.map((route) => {
