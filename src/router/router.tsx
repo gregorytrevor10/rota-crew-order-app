@@ -1,6 +1,7 @@
 import { createBrowserRouter, RouteObject } from "react-router-dom";
-import App from "../App";
+import Home from "../pages/Home";
 import { ErrorBoundaryPage } from "../pages/ErrorBoundaryPage";
+import BaseLayout from "../layout/BaseLayout";
 
 export interface CustomRouteObject {
   title: string;
@@ -20,7 +21,7 @@ export const routes: CustomRouteObject[] = [
     title: "Home",
     routeObject: {
       path: ROUTER_PATHS.HOME,
-      element: <App />,
+      element: <BaseLayout children={<Home />} />,
       errorElement: <ErrorBoundaryPage />,
     },
   },
@@ -28,7 +29,7 @@ export const routes: CustomRouteObject[] = [
     title: "Lunch",
     routeObject: {
       path: ROUTER_PATHS.LUNCH,
-      element: <App />,
+      element: <BaseLayout children={<>LUNCH</>} />,
       errorElement: <ErrorBoundaryPage />,
     },
   },
@@ -36,7 +37,7 @@ export const routes: CustomRouteObject[] = [
     title: "Dinner",
     routeObject: {
       path: ROUTER_PATHS.DINNER,
-      element: <App />,
+      element: <BaseLayout children={<>DINNER</>} />,
       errorElement: <ErrorBoundaryPage />,
     },
   },
@@ -44,7 +45,7 @@ export const routes: CustomRouteObject[] = [
     title: "Adding of Members",
     routeObject: {
       path: ROUTER_PATHS.ADD_MEMBER,
-      element: <App />,
+      element: <BaseLayout children={<>ADD_MEMBER</>} />,
       errorElement: <ErrorBoundaryPage />,
     },
   },

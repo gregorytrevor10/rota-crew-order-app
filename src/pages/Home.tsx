@@ -1,10 +1,10 @@
-import "./App.css";
+import "../styles/App.css";
 
 interface AppProps {
   title?: string;
 }
 
-export const App = ({ title }: AppProps) => {
+export const Home = ({ title }: AppProps) => {
   return (
     <div className="">
       <header className="App-header">
@@ -24,4 +24,4 @@ export const App = ({ title }: AppProps) => {
   );
 };
 
-export default App;
+export default Home;
