@@ -4,37 +4,37 @@ const LunchPage = () => {
   const orns = ["name1", "name2", "name3", "name4"];
 
   return (
-    <div className="container mx-auto p-4">
-      <h1 className="text-2xl font-bold mb-4 text-[#03045E]">Lunch Page</h1>
+    <div className="container mx-auto p-4 bg-oxford_blue text-light_cyan">
+      <h1 className="text-2xl font-bold mb-4 text-light_cyan">Lunch Page</h1>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         {/* Hierarchy order */}
-        <div className="border p-4 rounded shadow h-fit bg-[#90E0EF]">
-          <h2 className="text-xl font-semibold text-[#03045E]">Regular</h2>
+        <div className="border p-4 rounded shadow h-fit bg-marian_blue">
+          <h2 className="text-xl font-semibold text-light_cyan">Regular</h2>
           {regulars.map((reg, i) => (
-            <div className="bg-white p-4 rounded shadow mt-2" key={i}>
-              <h3 className="text-lg font-medium text-[#0077B6]">{reg}</h3>
-              <textarea className="w-full mt-2 p-2 border rounded" placeholder="Add food note..."></textarea>
-              <textarea className="w-full mt-2 p-2 border rounded" placeholder="Add drink note..."></textarea>
+            <div className="bg-light_cyan p-4 rounded shadow mt-2" key={i}>
+              <h3 className="text-lg font-medium text-oxford_blue">{reg}</h3>
+              <textarea className="w-full mt-2 p-2 border rounded bg-white text-oxford_blue" placeholder="Add food note..."></textarea>
+              <textarea className="w-full mt-2 p-2 border rounded bg-white text-oxford_blue" placeholder="Add drink note..."></textarea>
             </div>
           ))}
         </div>
-        <div className="border p-4 rounded shadow h-fit bg-[#90E0EF]">
-          <h2 className="text-xl font-semibold text-[#03045E]">NSF</h2>
+        <div className="border p-4 rounded shadow h-fit bg-marian_blue">
+          <h2 className="text-xl font-semibold text-light_cyan">NSF</h2>
           {nsfs.map((reg, i) => (
-            <div className="bg-white p-4 rounded shadow mt-2" key={i}>
-              <h3 className="text-lg font-medium text-[#0077B6]">{reg}</h3>
-              <textarea className="w-full mt-2 p-2 border rounded" placeholder="Add food note..."></textarea>
-              <textarea className="w-full mt-2 p-2 border rounded" placeholder="Add drink note..."></textarea>
+            <div className="bg-light_cyan p-4 rounded shadow mt-2" key={i}>
+              <h3 className="text-lg font-medium text-oxford_blue">{reg}</h3>
+              <textarea className="w-full mt-2 p-2 border rounded bg-white text-oxford_blue" placeholder="Add food note..."></textarea>
+              <textarea className="w-full mt-2 p-2 border rounded bg-white text-oxford_blue" placeholder="Add drink note..."></textarea>
             </div>
           ))}
         </div>
-        <div className="border p-4 rounded shadow h-fit bg-[#90E0EF]">
-          <h2 className="text-xl font-semibold text-[#03045E]">ORNS</h2>
+        <div className="border p-4 rounded shadow h-fit bg-marian_blue">
+          <h2 className="text-xl font-semibold text-light_cyan">ORNS</h2>
           {orns.map((reg, i) => (
-            <div className="bg-white p-4 rounded shadow mt-2" key={i}>
-              <h3 className="text-lg font-medium text-[#0077B6]">{reg}</h3>
-              <textarea className="w-full mt-2 p-2 border rounded" placeholder="Add food note..."></textarea>
-              <textarea className="w-full mt-2 p-2 border rounded" placeholder="Add drink note..."></textarea>
+            <div className="bg-light_cyan p-4 rounded shadow mt-2" key={i}>
+              <h3 className="text-lg font-medium text-oxford_blue">{reg}</h3>
+              <textarea className="w-full mt-2 p-2 border rounded bg-white text-oxford_blue" placeholder="Add food note..."></textarea>
+              <textarea className="w-full mt-2 p-2 border rounded bg-white text-oxford_blue" placeholder="Add drink note..."></textarea>
             </div>
           ))}
         </div>
