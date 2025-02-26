@@ -1,7 +1,8 @@
 import { createBrowserRouter, RouteObject } from "react-router-dom";
-import Home from "../pages/Home";
 import { ErrorBoundaryPage } from "../pages/ErrorBoundaryPage";
 import BaseLayout from "../layout/BaseLayout";
+import HomePage from "../pages/HomePage";
+import LunchPage from "../pages/LunchPage";
 
 export interface CustomRouteObject {
   title: string;
@@ -21,7 +22,7 @@ export const routes: CustomRouteObject[] = [
     title: "🏠 Home",
     routeObject: {
       path: ROUTER_PATHS.HOME,
-      element: <BaseLayout children={<Home />} />,
+      element: <BaseLayout children={<HomePage />} />,
       errorElement: <ErrorBoundaryPage />,
     },
   },
@@ -29,7 +30,7 @@ export const routes: CustomRouteObject[] = [
     title: "🍗 Lunch",
     routeObject: {
       path: ROUTER_PATHS.LUNCH,
-      element: <BaseLayout children={<>LUNCH</>} />,
+      element: <BaseLayout children={<LunchPage />} />,
       errorElement: <ErrorBoundaryPage />,
     },
   },

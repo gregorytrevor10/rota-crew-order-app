@@ -1,6 +1,6 @@
 import { routes } from "../router/router";
 
-export const Home = () => {
+export const HomePage = () => {
   return (
     <div>
       {routes.map((route) => {
@@ -14,4 +14,4 @@ export const Home = () => {
   );
 };
 
-export default Home;
+export default HomePage;
