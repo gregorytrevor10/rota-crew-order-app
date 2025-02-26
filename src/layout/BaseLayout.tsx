@@ -32,7 +32,7 @@ const BaseLayout = ({ children }: BaseLayoutProps) => {
       <main className="content">{children}</main>
       <footer>
         {shouldDisplayNav ? (
-          <nav className="flex overflow-x-auto whitespace-nowrap no-scrollbar p-4">
+          <nav className="flex flex-row-reverse overflow-x-auto whitespace-nowrap no-scrollbar p-4">
             {routes.map((route) => {
               return (
                 <a className="bg-blue-500 text-white mx-2 py-[1.25rem] text-center min-w-[175px] rounded-md font-semibold" href={route.routeObject.path}>
