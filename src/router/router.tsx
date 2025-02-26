@@ -18,7 +18,7 @@ export enum ROUTER_PATHS {
 
 export const routes: CustomRouteObject[] = [
   {
-    title: "Home",
+    title: "🏠 Home",
     routeObject: {
       path: ROUTER_PATHS.HOME,
       element: <BaseLayout children={<Home />} />,
@@ -26,7 +26,7 @@ export const routes: CustomRouteObject[] = [
     },
   },
   {
-    title: "Lunch",
+    title: "🍗 Lunch",
     routeObject: {
       path: ROUTER_PATHS.LUNCH,
       element: <BaseLayout children={<>LUNCH</>} />,
@@ -34,7 +34,7 @@ export const routes: CustomRouteObject[] = [
     },
   },
   {
-    title: "Dinner",
+    title: "🍝 Dinner",
     routeObject: {
       path: ROUTER_PATHS.DINNER,
       element: <BaseLayout children={<>DINNER</>} />,
@@ -42,7 +42,7 @@ export const routes: CustomRouteObject[] = [
     },
   },
   {
-    title: "Adding of Members",
+    title: "➕ Add Members",
     routeObject: {
       path: ROUTER_PATHS.ADD_MEMBER,
       element: <BaseLayout children={<>ADD_MEMBER</>} />,

@@ -1,5 +1,5 @@
 import ReactDOM from "react-dom/client";
-import "./global.css";
+import "./styles/global.css";
 import "./styles/tailwind.css";
 
 import { RouterProvider } from "react-router-dom";
