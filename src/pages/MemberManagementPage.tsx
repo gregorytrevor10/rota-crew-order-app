@@ -4,7 +4,7 @@ import { readAllRotaMembers, deleteMemberById, addMember } from "../services/mem
 import { Member } from "../interface/Member";
 import LoadingSpinner from "../components/LoadingSpinner";
 
-const AddMemberPage = () => {
+const MemberManagementPage = () => {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [type, setType] = useState("");
@@ -61,7 +61,7 @@ const AddMemberPage = () => {
 
   return (
     <div className="container mx-auto p-4 bg-oxford_blue text-light_cyan">
-      <h1 className="text-2xl font-bold mb-4">Add Member</h1>
+      <h1 className="text-2xl font-bold mb-4">Member Management</h1>
       <form onSubmit={handleSubmit} className="bg-marian_blue p-4 rounded shadow">
         <div className="mb-4">
           <label className="block text-light_cyan mb-2" htmlFor="rank">
@@ -105,8 +105,8 @@ const AddMemberPage = () => {
             ))}
           </select>
         </div>
-        <button type="submit" className="bg-azure text-white px-4 py-2 rounded hover:bg-light_cyan transition-colors">
-          Add Member
+        <button type="submit" className="bg-green-700 text-white px-4 py-2 rounded hover:bg-lime-500 transition-colors">
+          Create New Member
         </button>
       </form>
       <div>
@@ -141,4 +141,4 @@ const AddMemberPage = () => {
   );
 };
 
-export default AddMemberPage;
+export default MemberManagementPage;
