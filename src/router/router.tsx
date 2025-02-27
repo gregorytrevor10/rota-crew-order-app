@@ -3,7 +3,7 @@ import { ErrorBoundaryPage } from "../pages/ErrorBoundaryPage";
 import BaseLayout from "../layout/BaseLayout";
 import HomePage from "../pages/HomePage";
 import LunchPage from "../pages/LunchPage";
-import AddMemberPage from "../pages/AddMemberPage";
+import MemberManagementPage from "../pages/MemberManagementPage";
 
 export interface CustomRouteObject {
   title: string;
@@ -44,10 +44,10 @@ export const routes: CustomRouteObject[] = [
     },
   },
   {
-    title: "➕ Add Members",
+    title: "➕ Member Managements",
     routeObject: {
       path: ROUTER_PATHS.ADD_MEMBER,
-      element: <BaseLayout children={<AddMemberPage />} />,
+      element: <BaseLayout children={<MemberManagementPage />} />,
       errorElement: <ErrorBoundaryPage />,
     },
   },
