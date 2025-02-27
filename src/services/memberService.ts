@@ -27,7 +27,7 @@ export const readAllRotaMembers = async () => {
     throw error;
   }
 
-  return rota_members;
+  return rota_members as Member[];
 };
 
 export const deleteMemberById = async (member_id: string) => {
