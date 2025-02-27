@@ -1,8 +1,9 @@
 import { useState, useEffect } from "react";
-import { MEMBER_TYPE, SCDF_RANKS } from "../utils";
+import { cleanUpRankString, MEMBER_TYPE, SCDF_RANKS } from "../utils";
 import { readAllRotaMembers, deleteMemberById, addMember } from "../services/memberService";
 import { Member } from "../interface/Member";
 import LoadingSpinner from "../components/LoadingSpinner";
+import { toast } from "react-toastify";
 
 const MemberManagementPage = () => {
   const [firstName, setFirstName] = useState("");
@@ -23,9 +24,11 @@ const MemberManagementPage = () => {
     setIsLoadingMemberList(false);
   };
 
-  const handleDelete = async (member_id: string) => {
+  const handleDelete = async (member: Member) => {
     try {
-      await deleteMemberById(member_id);
+      await deleteMemberById(member.member_id);
+      toast(`successfully deleted ${member.rank} ${member.first_name} ${member.last_name} ✅`, { position: "top-center" });
+
       loadMembers(); // Refresh the members list after deletion
     } catch (error) {
       console.error("Error deleting member:", error);
@@ -43,13 +46,14 @@ const MemberManagementPage = () => {
         throw new Error("Name should be at least 3 characters long");
       }
       await addMember({ first_name: firstName, last_name: lastName, type: type, rank } as Member);
+      toast(`successfully added ${firstName} ${lastName} as ${type} ✅`, { position: "top-center" });
       setFirstName("");
       setLastName("");
       setRank("");
       setType("");
       loadMembers();
     } catch (error) {
-      alert(error);
+      toast(`failed to create a new member, hit and error. 😢😢😢 ➡️ ${(error as Error).message}`, { position: "top-center" });
       console.log(error);
       console.log(rank);
     }
@@ -73,7 +77,7 @@ const MemberManagementPage = () => {
             </option>
             {Object.values(SCDF_RANKS).map((rank) => (
               <option key={rank} value={rank}>
-                {rank.replace(/-/g, " ").replace("scdf", "").replace(".png", "").replace("1", " I").replace("2", " II")}
+                {cleanUpRankString(rank)}
               </option>
             ))}
           </select>
@@ -125,11 +129,9 @@ const MemberManagementPage = () => {
               <li className="bg-marian_blue px-4 py-2 mt-4 flex justify-between items-center rounded-md" key={index}>
                 <span className="flex-1">
                   <img src={`https://www.cmpb.gov.sg/ResourcePackages/MINDEFPreEnlistment/assets/images/uploads/2015/12/${member.rank}`} className="w-[30px] inline-block mr-4 hover:scale-[3] transition-all" />
-                  <span>
-                    {`${member.first_name} ${member.last_name}`} - {member.type}
-                  </span>
+                  <span className="capitalize">{`${cleanUpRankString(member.rank)} ${member.first_name} - ${member.type}`}</span>
                 </span>
-                <button className="bg-indian_red text-white px-2 py-1 rounded hover:bg-red-700 transition-colors" onClick={() => handleDelete(member.member_id)}>
+                <button className="bg-indian_red text-white px-2 py-1 rounded hover:bg-red-700 transition-colors" onClick={() => handleDelete(member)}>
                   🗑️ Delete
                 </button>
               </li>

@@ -27,3 +27,7 @@ export enum SCDF_RANKS {
   // DEPUTY_COMMISSIONER = "scdf-deputy-commissioner.png",
   // COMMISSIONER = "scdf-commissioner.png"
 }
+
+export function cleanUpRankString(rank: SCDF_RANKS) {
+  return rank.replace(/-/g, " ").replace("scdf", "").replace(".png", "").replace("1", " I").replace("2", " II");
+}
