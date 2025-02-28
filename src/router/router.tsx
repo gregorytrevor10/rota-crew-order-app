@@ -2,7 +2,7 @@ import { createBrowserRouter, RouteObject } from "react-router-dom";
 import { ErrorBoundaryPage } from "../pages/ErrorBoundaryPage";
 import BaseLayout from "../layout/BaseLayout";
 import HomePage from "../pages/HomePage";
-import LunchPage from "../pages/LunchPage";
+import LunchPage from "../pages/FoodOrderPage";
 import MemberManagementPage from "../pages/MemberManagementPage";
 
 export interface CustomRouteObject {
@@ -13,7 +13,7 @@ export interface CustomRouteObject {
 
 export enum ROUTER_PATHS {
   HOME = "/",
-  LUNCH = "/lunch",
+  MEAL_ROSTER = "/meal-roster",
   DINNER = "/dinner",
   ADD_MEMBER = "/add_member",
 }
@@ -28,23 +28,15 @@ export const routes: CustomRouteObject[] = [
     },
   },
   {
-    title: "🍗 Lunch",
+    title: "🍌 Food Orders",
     routeObject: {
-      path: ROUTER_PATHS.LUNCH,
+      path: ROUTER_PATHS.MEAL_ROSTER,
       element: <BaseLayout children={<LunchPage />} />,
       errorElement: <ErrorBoundaryPage />,
     },
   },
   {
-    title: "🍝 Dinner",
-    routeObject: {
-      path: ROUTER_PATHS.DINNER,
-      element: <BaseLayout children={<>DINNER</>} />,
-      errorElement: <ErrorBoundaryPage />,
-    },
-  },
-  {
-    title: "➕ Member Managements",
+    title: "💻 Member Managements",
     routeObject: {
       path: ROUTER_PATHS.ADD_MEMBER,
       element: <BaseLayout children={<MemberManagementPage />} />,

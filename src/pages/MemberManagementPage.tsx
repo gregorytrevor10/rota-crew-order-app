@@ -1,9 +1,12 @@
-import { useState, useEffect } from "react";
-import { cleanUpRankString, MEMBER_TYPE, SCDF_RANKS } from "../utils";
-import { readAllRotaMembers, deleteMemberById, addMember } from "../services/memberService";
-import { Member } from "../interface/Member";
-import LoadingSpinner from "../components/LoadingSpinner";
+import { Dialog } from "primereact/dialog";
+import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
+import LoadingSpinner from "../components/LoadingSpinner";
+import { MealRosterItemWithMember } from "../interface/MealRosterItem";
+import { Member } from "../interface/Member";
+import { addMealTimeRosterItem } from "../services/mealTimeRoster";
+import { addMember, deleteMemberById, readAllRotaMembers } from "../services/memberService";
+import { cleanUpRankString, MEAL_TIME, MEMBER_TYPE, SCDF_RANKS, sexyTailwindButtonClassname } from "../utils";
 
 const MemberManagementPage = () => {
   const [firstName, setFirstName] = useState("");
@@ -12,6 +15,13 @@ const MemberManagementPage = () => {
   const [rank, setRank] = useState("");
   const [members, setMembers] = useState<Member[]>([]);
   const [isLoadingMemberList, setIsLoadingMemberList] = useState<boolean>(true);
+
+  const [selectedMember, setSelectedMember] = useState<Member | null>(null);
+  const [isShowingOrderDialogue, setIsShowingOrderDialogue] = useState<boolean>(false);
+  const [food, setFood] = useState<string>("");
+  const [drink, setDrink] = useState<string>("");
+  const [price, setPrice] = useState<number>(0.0);
+  const [mealTime, setMealTime] = useState<MEAL_TIME>(MEAL_TIME.LUNCH);
 
   const loadMembers = async () => {
     setIsLoadingMemberList(true);
@@ -60,6 +70,34 @@ const MemberManagementPage = () => {
       toast(`failed to create a new member, hit and error. 😢😢😢 ➡️ ${(error as Error).message}`, { position: "top-center" });
       console.log(error);
       console.log(rank);
+    }
+  };
+
+  const handleFoodOrderSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!selectedMember) return;
+
+    try {
+      const mealRosterItem: Omit<MealRosterItemWithMember, "rota_members"> = {
+        member_id: selectedMember.member_id,
+        created_at: new Date().toISOString(),
+        food,
+        drink,
+        price: price, // Convert the price to a number
+        meal_time: mealTime,
+      };
+
+      await addMealTimeRosterItem(mealRosterItem);
+      toast(`Successfully added food order for ${selectedMember.first_name} ${selectedMember.last_name} ✅`, { position: "top-center" });
+      setIsShowingOrderDialogue(false);
+      setSelectedMember(null);
+      setFood("");
+      setDrink("");
+      setPrice(0.0);
+      setMealTime(MEAL_TIME.LUNCH);
+    } catch (error) {
+      toast(`Failed to add food order. 😢😢😢 ➡️ ${(error as Error).message}`, { position: "top-center" });
+      console.error(error);
     }
   };
 
@@ -113,7 +151,7 @@ const MemberManagementPage = () => {
             ))}
           </select>
         </div>
-        <button type="submit" className="bg-green-700 text-white px-4 py-2 rounded hover:bg-lime-500 transition-colors">
+        <button type="submit" className="bg-green-700 text-white px-4 py-2 rounded hover:bg-green-500 transition-colors">
           Create New Member
         </button>
       </form>
@@ -130,11 +168,25 @@ const MemberManagementPage = () => {
         ) : (
           <ul>
             {members.map((member, index) => (
-              <li className="bg-marian_blue px-4 py-2 mt-4 flex justify-between items-center rounded-md" key={index}>
+              <li
+                className={`
+                  bg-marian_blue px-4 py-2 mt-4 flex gap-2 justify-between items-center rounded-md ${sexyTailwindButtonClassname}
+                  `}
+                key={index}
+              >
                 <span className="flex-1">
-                  <img src={`https://www.cmpb.gov.sg/ResourcePackages/MINDEFPreEnlistment/assets/images/uploads/2015/12/${member.rank}`} className="w-[30px] inline-block mr-4 hover:scale-[3] transition-all" />
+                  <img src={`https://www.cmpb.gov.sg/ResourcePackages/MINDEFPreEnlistment/assets/images/uploads/2015/12/${member.rank}`} alt={`${member.rank}`} className="w-[30px] inline-block mr-4 hover:scale-[3] transition-all" />
                   <span className="capitalize">{`${cleanUpRankString(member.rank)} ${member.first_name} - ${member.type}`}</span>
                 </span>
+                <button
+                  className="bg-green-600 text-white px-2 py-1 rounded hover:bg-green-700 transition-colors"
+                  onClick={() => {
+                    setSelectedMember(member);
+                    setIsShowingOrderDialogue(true);
+                  }}
+                >
+                  ➕ Add Food Order
+                </button>
                 <button className="bg-indian_red text-white px-2 py-1 rounded hover:bg-red-700 transition-colors" onClick={() => handleDelete(member)}>
                   🗑️ Delete
                 </button>
@@ -143,6 +195,68 @@ const MemberManagementPage = () => {
           </ul>
         )}
       </div>
+      <Dialog
+        draggable={false}
+        className="bg-slate-800 text-white rounded-md px-6 py-[2em] pb-[4em] max-w-[75vw]"
+        header={
+          <span>
+            Add Food Order for <span className="font-semibold text-blue-400 text-lg">{`${selectedMember?.first_name} ${selectedMember?.last_name}`}</span>
+          </span>
+        }
+        modal
+        visible={isShowingOrderDialogue}
+        onHide={() => {
+          if (!isShowingOrderDialogue) return;
+          setIsShowingOrderDialogue(false);
+          setSelectedMember(null);
+        }}
+      >
+        <hr className="my-[1em]" />
+        <form onSubmit={handleFoodOrderSubmit} className="grid grid-cols-1 gap-4 w-[500px]">
+          <div className="flex items-center">
+            <label className="block mr-4" htmlFor="food">
+              Food
+            </label>
+            <input type="text" id="food" value={food} onChange={(e) => setFood(e.target.value)} className="w-full p-2 border rounded bg-white text-black" placeholder="Enter food" required />
+          </div>
+          <div className="flex items-center">
+            <label className="block mr-4" htmlFor="drink">
+              Drink
+            </label>
+            <input type="text" id="drink" value={drink} onChange={(e) => setDrink(e.target.value)} className="w-full p-2 border rounded bg-white text-black" placeholder="Enter drink" required />
+          </div>
+          <div className="flex items-center">
+            <label className="block mr-4 font-bold text-lg" htmlFor="price">
+              $
+            </label>
+            <input
+              type="number"
+              id="price"
+              value={price}
+              onChange={(e) => setPrice(parseFloat(parseFloat(e.target.value).toFixed(2)))}
+              className="w-full p-2 border rounded bg-white text-black"
+              placeholder="Enter price"
+              step="0.01"
+              required
+            />
+          </div>
+          <div>
+            <label className="block mb-2" htmlFor="mealTime">
+              Meal Time
+            </label>
+            <select id="mealTime" value={mealTime} onChange={(e) => setMealTime(e.target.value as MEAL_TIME)} className="w-full p-2 border rounded bg-white text-black" required>
+              {Object.values(MEAL_TIME).map((time) => (
+                <option key={time} value={time}>
+                  {time}
+                </option>
+              ))}
+            </select>
+          </div>
+          <button type="submit" className="bg-green-700 text-white px-4 py-2 rounded hover:bg-lime-500 transition-colors">
+            Add Food Order
+          </button>
+        </form>
+      </Dialog>
     </div>
   );
 };

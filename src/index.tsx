@@ -1,6 +1,7 @@
 import ReactDOM from "react-dom/client";
 import "./styles/global.css";
 import "./styles/tailwind.css";
+import "primeicons/primeicons.css";
 
 import { RouterProvider } from "react-router-dom";
 import { browserRouter } from "./router/router";

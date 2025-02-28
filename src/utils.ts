@@ -28,6 +28,13 @@ export enum SCDF_RANKS {
   // COMMISSIONER = "scdf-commissioner.png"
 }
 
+export enum MEAL_TIME {
+  LUNCH = "Lunch",
+  DINNER = "Dinner",
+}
+
 export function cleanUpRankString(rank: SCDF_RANKS) {
   return rank.replace(/-/g, " ").replace("scdf", "").replace(".png", "").replace("1", " I").replace("2", " II");
 }
+
+export const sexyTailwindButtonClassname = "border-transparent border-2 hover:border-blue-500 hover:shadow-xl hover:scale-105 transition-all";

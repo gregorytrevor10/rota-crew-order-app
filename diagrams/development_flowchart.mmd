@@ -1,0 +1,32 @@
+flowchart TD
+    A[Start] --> B[Create Model]
+    B --> C[Create Supabase Table]
+    C --> D[Create Controller]
+    D --> E[Create View]
+    E --> F[Test Feature]
+    F --> G[Deploy Feature]
+    G --> H[End]
+
+    B --> B1[Define TypeScript Interface]
+    B1 --> B2[Add Interface to src/interface]
+    
+    C --> C1[Login to Supabase]
+    C1 --> C2[Create Table in Supabase]
+    C2 --> C3[Map Table Columns to Model Fields]
+    
+    D --> D1[Create Service Functions]
+    D1 --> D2[Add Functions to src/services]
+    D2 --> D3[Implement CRUD Operations]
+    
+    E --> E1[Create React Components]
+    E1 --> E2[Add Components to src/components]
+    E2 --> E3[Create Page Components]
+    E3 --> E4[Add Pages to src/pages]
+    E4 --> E5[Update Router Configuration]
+    
+    F --> F1[Run Unit Tests]
+    F1 --> F2[Run Integration Tests]
+    F2 --> F3[Fix Bugs and Issues]
+    
+    G --> G1[Build Project]
+    G1 --> G2[Deploy to Production]
