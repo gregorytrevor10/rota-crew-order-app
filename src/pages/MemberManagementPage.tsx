@@ -24,6 +24,10 @@ const MemberManagementPage = () => {
     setIsLoadingMemberList(false);
   };
 
+  const handleRefreshMembers = () => {
+    loadMembers();
+  };
+
   const handleDelete = async (member: Member) => {
     try {
       await deleteMemberById(member.member_id);
@@ -116,7 +120,7 @@ const MemberManagementPage = () => {
       <div>
         <div className="flex mt-8">
           <h1 className="text-2xl font-bold mt-4 flex-1">Existing Members</h1>
-          <button className="bg-slate-700 float-end mt-4 rounded-md px-2" onClick={loadMembers}>
+          <button className="bg-slate-700 float-end mt-4 rounded-md px-2" onClick={handleRefreshMembers}>
             🔁 Refresh
           </button>
         </div>
