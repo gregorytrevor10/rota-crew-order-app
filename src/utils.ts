@@ -38,3 +38,4 @@ export function cleanUpRankString(rank: SCDF_RANKS) {
 }
 
 export const sexyTailwindButtonClassname = "border-transparent border-2 hover:border-blue-500 hover:shadow-xl hover:scale-105 transition-all";
+export const sexyTailwindButtonClassnameNoShadow = "border-transparent border-2 hover:border-blue-500 hover:scale-105 transition-all";
