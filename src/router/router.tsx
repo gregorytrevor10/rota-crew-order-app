@@ -36,7 +36,7 @@ export const routes: CustomRouteObject[] = [
     },
   },
   {
-    title: "💻 Member Managements",
+    title: "🧑🏻‍🚒 Member Managements",
     routeObject: {
       path: ROUTER_PATHS.ADD_MEMBER,
       element: <BaseLayout children={<MemberManagementPage />} />,

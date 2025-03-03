@@ -1,5 +1,6 @@
 import { createClient, SupabaseClient } from "@supabase/supabase-js";
 import { Member } from "../interface/Member";
+import { MEMBER_TYPE } from "../utils";
 
 const projectURL = process.env.REACT_APP_SUPABASE_PROJECT_URL;
 const anonKey = process.env.REACT_APP_SUPABASE_ANON_KEY;
@@ -22,6 +23,16 @@ export const fetchPagedRotaMembers = async (start: number, end: number) => {
 
 export const readAllRotaMembers = async () => {
   const { data: rota_members, error } = await supabaseClient.from("rota_members").select("*");
+
+  if (error) {
+    throw error;
+  }
+
+  return rota_members as Member[];
+};
+
+export const readRotaMembersByType = async (type: MEMBER_TYPE) => {
+  const { data: rota_members, error } = await supabaseClient.from("rota_members").select("*").eq("type", type);
 
   if (error) {
     throw error;

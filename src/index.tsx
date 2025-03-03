@@ -8,7 +8,7 @@ import { browserRouter } from "./router/router";
 import { ToastContainer } from "react-toastify";
 const root = ReactDOM.createRoot(document.getElementById("root") as HTMLElement);
 root.render(
-  <div>
+  <div className="font-figtree">
     <RouterProvider router={browserRouter} />
     <ToastContainer />
   </div>
