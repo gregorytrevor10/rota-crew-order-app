@@ -3,6 +3,9 @@ module.exports = {
   content: ["./src/**/*.{ts,tsx}"],
   plugins: [],
   theme: {
+    fontFamily: {
+      figtree: ["Figtree Variable"],
+    },
     extend: {
       colors: {
         marian_blue: {

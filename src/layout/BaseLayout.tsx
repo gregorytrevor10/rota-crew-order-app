@@ -20,8 +20,20 @@ const BaseLayout = ({ children }: BaseLayoutProps) => {
           </nav>
         )}
       </header>
-      <div className="min-h-screen bg-oxford_blue text-light_cyan overflow-auto">{children}</div>
-      <footer className="bg-marian_blue text-light_cyan p-4 text-center">{/* Footer content */}</footer>
+      <div className="min-h-screen pb-[4em] bg-oxford_blue text-light_cyan overflow-auto">{children}</div>
+      <footer className="bg-marian_blue text-light_cyan p-4 text-right">
+        <p>
+          Created by:
+          <br />
+          <a className="text-yellow-500 underline" href="https://github.com/gregorytrevor10">
+            Gregory
+          </a>
+          {" & "}
+          <a className="text-yellow-500 underline" href="https://github.com/cheonglol">
+            Lester
+          </a>
+        </p>
+      </footer>
     </>
   );
 };
