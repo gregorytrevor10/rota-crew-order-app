@@ -28,7 +28,7 @@ export const routes: CustomRouteObject[] = [
     },
   },
   {
-    title: "🍌 Food Orders",
+    title: "🍖 Food Orders",
     routeObject: {
       path: ROUTER_PATHS.MEAL_ROSTER,
       element: <BaseLayout children={<LunchPage />} />,
