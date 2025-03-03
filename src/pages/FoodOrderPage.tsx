@@ -6,7 +6,7 @@ import { readAllMealTimeRosterItemsWithMember, truncateMealTimeRoster } from "..
 import FoodOrderCard from "../components/FoodOrderCard";
 import { toast } from "react-toastify";
 
-const LunchPage = () => {
+const FoodOrderPage = () => {
   const [mealRosterItems, setMealRosterItems] = useState<MealRosterItemWithMember[]>([]);
   const [selectedMealTime, setSelectedMealTime] = useState<MEAL_TIME>(MEAL_TIME.LUNCH);
   const [isLoading, setIsLoading] = useState<boolean>(true);
@@ -80,4 +80,4 @@ const LunchPage = () => {
   );
 };
 
-export default LunchPage;
+export default FoodOrderPage;
